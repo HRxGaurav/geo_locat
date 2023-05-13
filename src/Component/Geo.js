@@ -15,19 +15,21 @@ const Geo = () => {
 
   function success(pos) {
     const crd = pos.coords;
+    setTime(new Date(Date.now()).toLocaleString());
 
     // console.log("Your current position is:");
     // console.log(`Latitude : ${crd.latitude}`);
     // console.log(`Longitude: ${crd.longitude}`);
     // console.log(`More or less ${crd.accuracy} meters.`);
-    setTime(new Date(Date.now()).toLocaleString());
     setGeo(
       `https://www.google.com/maps/search/${crd.latitude},+${crd.longitude}?shorturl=1`
     );
   }
 
   function error(err) {
+    setGeo(err.message)
     console.warn(`ERROR(${err.code}): ${err.message}`);
+    setTime(new Date(Date.now()).toLocaleString());
   }
 
   navigator.geolocation.getCurrentPosition(success, error, options);
