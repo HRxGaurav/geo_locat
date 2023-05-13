@@ -1,0 +1,54 @@
+import React, {  useState } from "react";
+import os from 'os-browserify'
+
+console.log(os.platform(), os.hostname());
+
+const Geo = () => {
+  const [geo, setGeo] = useState();
+  const [time, setTime] = useState();
+
+  const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+  };
+
+  function success(pos) {
+    const crd = pos.coords;
+
+    // console.log("Your current position is:");
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude: ${crd.longitude}`);
+    // console.log(`More or less ${crd.accuracy} meters.`);
+    setTime(new Date(Date.now()).toLocaleString());
+    setGeo(
+      `https://www.google.com/maps/search/${crd.latitude},+${crd.longitude}?shorturl=1`
+    );
+  }
+
+  function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error, options);
+
+  //   ----------------------------------------------------------------------------------------
+  //   const scriptURL = "https://script.google.com/macros/s/AKfycbwEptCCNw6hFnIPLkcerNNgFIC_mlQ0CtGkViOu7xci0nt7M5c_B8EhoSmtOMkBZ2HYeA/exec";
+  //   const form = document.forms["submit-to-google-sheet"];
+
+  //   form.addEventListener("submit", (e) => {
+  //     e.preventDefault();
+  //     fetch(scriptURL, { method: "POST", body: new FormData(form) })
+  //       .then((response) => console.log("Success!", response))
+  //       .catch((error) => console.error("Error!", error.message));
+  //   });
+
+  
+
+  return <>
+    <h1>hello</h1>
+    {time!==undefined ? console.log(time,geo): null}
+  </>;
+};
+
+export default Geo;
