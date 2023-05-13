@@ -46,7 +46,7 @@ const Geo = () => {
   
 
   return <>
-    <h1>hello</h1>
+    <h1>{time + " " +geo}</h1>
     {time!==undefined ? console.log(time,geo): null}
   </>;
 };
