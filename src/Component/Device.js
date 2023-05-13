@@ -4,7 +4,7 @@ const Device = () => {
 
     console.log(navigator.userAgent);
   return (
-    <div>Device</div>
+    <div>Device : {navigator.userAgent}</div>
   )
 }
 
