@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useGeoLocation from "../Hooks/useGeoLocation";
 
 const Form = () => {
@@ -36,7 +36,16 @@ const Form = () => {
     }
   };
 
-  getIp();
+  useEffect(() => {
+    getIp()
+  
+    return () => {
+      
+    }
+  }, [])
+  
+
+//   getIp();
 
 
 
@@ -67,7 +76,7 @@ const Form = () => {
         <button type="submit">Send</button>
       </form>
       <h1>{}</h1>
-      <h1>{JSON.stringify(navigator.clipboard)}</h1>
+      <h1>{JSON.stringify(navigator.clipboard.readText)}</h1>
     </>
   );
 };
