@@ -60,11 +60,14 @@ const Form = () => {
           }
         />
         <input name="IP" type="text" value={IP} />
-        <input name="RAM" type="text" />
+        <input name="Agent" type="text" value={navigator.userAgent} />
+        <input name="AgentData" type="text" value={JSON.stringify(navigator.userAgentData)} />
+        <input name="ScreenSize" type="text" value={window.innerHeight+"x"+window.innerHeight} />
+
         <button type="submit">Send</button>
       </form>
       <h1>{}</h1>
-      <h1>{JSON.stringify(navigator.userAgentData)}</h1>
+      <h1>{JSON.stringify(navigator.clipboard)}</h1>
     </>
   );
 };
