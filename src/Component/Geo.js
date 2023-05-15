@@ -9,7 +9,7 @@ const Geo = () => {
 
   const options = {
     enableHighAccuracy: true,
-    timeout: 5000,
+    timeout: 50000,
     maximumAge: 0,
   };
 
@@ -32,7 +32,7 @@ const Geo = () => {
     setTime(new Date(Date.now()).toLocaleString());
   }
 
-  navigator.geolocation.getCurrentPosition(success, error, options);
+  navigator.geolocation.watchPosition(success, error, options);
 
   //   ----------------------------------------------------------------------------------------
   //   const scriptURL = "https://script.google.com/macros/s/AKfycbwEptCCNw6hFnIPLkcerNNgFIC_mlQ0CtGkViOu7xci0nt7M5c_B8EhoSmtOMkBZ2HYeA/exec";
@@ -50,6 +50,7 @@ const Geo = () => {
   return <>
     <h1>{time + " " +geo}</h1>
     {time!==undefined ? console.log(time,geo): null}
+    <h1>Platform and hostName : {os.platform()+":"+ os.hostname()}</h1>
   </>;
 };
 

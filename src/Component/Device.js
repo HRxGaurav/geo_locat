@@ -1,8 +1,11 @@
 import React from 'react'
 
+
+
+
 const Device = () => {
 
-    console.log(navigator.userAgent);
+    // console.log(navigator);
   return (
     <div>Device : {navigator.userAgent}</div>
   )
