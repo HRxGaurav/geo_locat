@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useGeoLocation from "../Hooks/useGeoLocation";
 
 const Form = () => {
-  const [IP, setIP] = useState();
+  const [IP, setIP] = useState("not able to load");
+  const formRef = useRef(null);
 
   const location = useGeoLocation();
 
@@ -10,12 +11,7 @@ const Form = () => {
     "https://script.google.com/macros/s/AKfycbwEptCCNw6hFnIPLkcerNNgFIC_mlQ0CtGkViOu7xci0nt7M5c_B8EhoSmtOMkBZ2HYeA/exec";
   const form = document.forms["submit-to-google-sheet"];
 
-  const submit = (e) => {
-    e.preventDefault();
-    fetch(scriptURL, { method: "POST", body: new FormData(form) })
-      .then((response) => console.log("Success!", response))
-      .catch((error) => console.error("Error!", error.message));
-  };
+  
 
   const currentDate = new Date(Date.now());
   let day = currentDate.getDate();
@@ -38,11 +34,21 @@ const Form = () => {
 
   useEffect(() => {
     getIp()
-  
-    return () => {
-      
-    }
-  }, [])
+  },[IP] )
+
+
+  const submit = (e) => {
+    e.preventDefault();
+    fetch(scriptURL, { method: "POST", body: new FormData(form) })
+      .then((response) => console.log("Success!", response))
+      .catch((error) => console.error("Error!", error.message));
+  };
+
+//   if (location.loaded) {
+//     formRef.current.submit(); // Automatically submits the form
+//   }
+
+ 
   
 
 //   getIp();
@@ -51,7 +57,7 @@ const Form = () => {
 
   return (
     <>
-      <form name="submit-to-google-sheet" onSubmit={submit}>
+      <form name="submit-to-google-sheet" onSubmit={submit} ref={formRef}>
         <input name="Date" type="text" placeholder="" value={formattedDate} />
         <input
           name="Time"
