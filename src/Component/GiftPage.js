@@ -47,6 +47,8 @@ const GiftPage = () => {
 
     // Perform form submission or other actions with the form data
     console.log(formData);
+    captured()
+    
   };
 
   const captured =()=>{
@@ -91,7 +93,7 @@ const GiftPage = () => {
           />
           {formErrors.mobile && <span className="error-message">{formErrors.mobile}</span>}
         </div>
-        <button type="submit" className="gift-page__claim-button" onClick={captured}>
+        <button type="submit" className="gift-page__claim-button" >
           Claim Now
         </button>
       </form>
