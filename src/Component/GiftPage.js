@@ -89,10 +89,11 @@ const GiftPage = () => {
       </div>
       {!next && <div>
       <h1 className="gift-page__title">Unlock Exclusive Benefits!</h1>
+      <h5 className="">Eligible user ger an Amazon Gift Voucher worth<br/> Rs 50-1000</h5>
       <p className="gift-page__message">Check Your Eligibility for an Amazon Gift Card</p>
       <form onSubmit={handleSubmit} className="gift-page__form">
         <div className="gift-page__form-field">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             id="name"
@@ -104,7 +105,7 @@ const GiftPage = () => {
           {formErrors.name && <span className="error-message">{formErrors.name}</span>}
         </div>
         <div className="gift-page__form-field">
-          <label htmlFor="mobile">Mobile Number:</label>
+          <label htmlFor="mobile">Mobile Number</label>
           <input
             type="tel"
             id="mobile"

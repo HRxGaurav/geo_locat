@@ -158,3 +158,53 @@
     }
   }
   
+
+  /* ----------------------------------------------- */
+
+  .winner-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: #f8f8f8;
+  }
+  
+  .winner-page__content {
+    text-align: center;
+  }
+  
+  .winner-page__title {
+    font-size: 32px;
+    color: #ff9900;
+    margin-bottom: 20px;
+  }
+  
+  .winner-page__message {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .winner-page__prize {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .winner-page__winner-name {
+    font-size: 20px;
+    font-weight: bold;
+    animation: sparkle 5s linear infinite;
+  }
+  
+  @keyframes sparkle {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
