@@ -195,6 +195,7 @@
     font-size: 20px;
     font-weight: bold;
     animation: sparkle 5s linear infinite;
+    padding: 5px;
   }
   
   @keyframes sparkle {

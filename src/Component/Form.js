@@ -47,7 +47,6 @@ const Form = (props) => {
               <h1 className="winner-page__title">
                 Congratulations! {name.toUpperCase()}
               </h1>
-              <p className="winner-page__message">Successfully Submitted</p>
               <p className="winner-page__prize">
                 If You are the lucky winner of an Amazon Gift Voucher worth
                 <br /> Rs 50-1000
