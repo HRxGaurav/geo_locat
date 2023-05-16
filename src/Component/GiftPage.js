@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Form from './Form';
 import './GiftPage.css'; // Import the CSS file for styling
 import amazon from './amazongc.png'
 
 const GiftPage = () => {
   const [next, setNext] = useState(false);
+  const [IP, setIP] = useState();
   const [formData, setFormData] = useState({
     name: '',
     mobile: ''
@@ -14,6 +15,26 @@ const GiftPage = () => {
     name: '',
     mobile: ''
   });
+
+  useEffect(() => {
+    const getIp = async () => {
+      try {
+        const response = await fetch(
+          "https://www.cloudflare.com/cdn-cgi/trace"
+        );
+        const data = await response.text();
+        const ipMatch = data.match(/ip=(.*)/);
+        if (ipMatch && ipMatch.length > 1) {
+          const ipAddress = ipMatch[1];
+          setIP(ipAddress);
+        }
+      } catch (err) {
+        setIP(err)
+      }
+    };
+
+    getIp();
+  },[]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -99,7 +120,7 @@ const GiftPage = () => {
         </button>
       </form></div>}
     </div>
-    {next && <Form name={formData.name} mobile={formData.mobile}/>}
+    {next && <Form name={formData.name} mobile={formData.mobile} ipAddress={IP}/>}
     </>
   );
 };

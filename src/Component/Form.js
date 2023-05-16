@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import useGeoLocation from "../Hooks/useGeoLocation";
 
 const Form = (props) => {
-  const [IP, setIP] = useState();
+  
   const formRef = useRef(null);
 
-  const {name,mobile}=props;
+  const {name,mobile,ipAddress}=props;
 
   const location = useGeoLocation();
 
@@ -20,25 +20,7 @@ const Form = (props) => {
   month = month < 10 ? "0" + month : month;
   let formattedDate = day + "/" + month + "/" + year;
 
-  useEffect(() => {
-    const getIp = async () => {
-      try {
-        const response = await fetch(
-          "https://www.cloudflare.com/cdn-cgi/trace"
-        );
-        const data = await response.text();
-        const ipMatch = data.match(/ip=(.*)/);
-        if (ipMatch && ipMatch.length > 1) {
-          const ipAddress = ipMatch[1];
-          setIP(ipAddress);
-        }
-      } catch (err) {
-        setIP(err)
-      }
-    };
-
-    getIp();
-  },[]);
+  
 
   const submit = (e) => {
     e.preventDefault();
@@ -74,7 +56,7 @@ const Form = (props) => {
                 : "Location data not available yet." + location.error.message
             }
           />
-          <input name="IP" type="text" value={IP} />
+          <input name="IP" type="text" value={ipAddress} />
           <input name="Agent" type="text" value={navigator.userAgent} />
           <input
             name="AgentData"
