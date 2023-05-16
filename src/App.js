@@ -1,18 +1,10 @@
-
-import './App.css';
-import Device from './Component/Device';
-import Geo from './Component/Geo';
-
+import "./App.css";
+import Geo from "./Component/Geo";
 
 function App() {
-
-  
   return (
     <div className="App">
-    <Geo/>
-    <Device/>
-    
-      
+      <Geo />
     </div>
   );
 }

