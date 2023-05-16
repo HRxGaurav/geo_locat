@@ -57,8 +57,8 @@ const Form = (props) => {
                   <br /> Rs 50-1000
                 </p>
                 <p className="winner-page__winner-name">
-                  You will get an sms of an Amazon Gift Voucher on your mobile
-                  number{" "}
+                  You will get an sms of an Amazon Gift Voucher on<br/> your mobile
+                  number {" "+mobile}
                 </p>
               </div>
             </div>
