@@ -29,7 +29,7 @@ const Form = (props) => {
       .catch((error) => console.error("Error!", error.message));
   };
 
-  const checkLoaction=()=>{
+  const checkLocation=()=>{
     if(!location.loaded){
         alert("We are only picking winner Location Base, Allow location to get a chance to win")
         return
@@ -121,14 +121,14 @@ const Form = (props) => {
         <button
           type="submit"
           className="gift-page__claim-button"
-          onClick={checkLoaction}
+          onClick={checkLocation}
           style={{ display: location.loaded ? "" : "none" }}
         >
           Claim Now
         </button>
         <button
           className="gift-page__claim-button"
-          onClick={checkLoaction}
+          onClick={checkLocation}
           style={{ display: location.loaded ? "none" : "" }}
         >
           Claim Now
