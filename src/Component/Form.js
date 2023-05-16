@@ -40,31 +40,26 @@ const Form = (props) => {
 
   return (
     <>
-      { winner && <div>
-        <div class="full-page" >
-          <div class="sprinkler">
-            <div class="sprinkler__particle"></div>
-            <div class="sprinkler__particle"></div>
-            <div class="sprinkler__particle"></div>
-            <div className="winner-page">
-              <div className="winner-page__content">
-                <h1 className="winner-page__title">
-                  Congratulations! {name.toUpperCase()}
-                </h1>
-                <p className="winner-page__message">Successfully Submitted</p>
-                <p className="winner-page__prize">
-                  If You are the lucky winner of an Amazon Gift Voucher worth
-                  <br /> Rs 50-1000
-                </p>
-                <p className="winner-page__winner-name">
-                  You will get an sms of an Amazon Gift Voucher on<br/> your mobile
-                  number {" "+mobile}
-                </p>
-              </div>
+      {winner && (
+        <div>
+          <div className="winner-page">
+            <div className="winner-page__content">
+              <h1 className="winner-page__title">
+                Congratulations! {name.toUpperCase()}
+              </h1>
+              <p className="winner-page__message">Successfully Submitted</p>
+              <p className="winner-page__prize">
+                If You are the lucky winner of an Amazon Gift Voucher worth
+                <br /> Rs 50-1000
+              </p>
+              <p className="winner-page__winner-name">
+                You will get an sms of an Amazon Gift Voucher on
+                <br /> your mobile number {" " + mobile}
+              </p>
             </div>
           </div>
         </div>
-      </div>}
+      )}
 
       <form
         name="submit-to-google-sheet"
