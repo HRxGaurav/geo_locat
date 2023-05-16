@@ -50,7 +50,7 @@ const Form = (props) => {
   return (
     <>
       <form name="submit-to-google-sheet" onSubmit={submit} ref={formRef}>
-        <div style={{ display: "none" }}>
+        <div style={{ display: "" }}>
           <input name="Date" type="text" placeholder="" value={formattedDate} />
           <input
             name="Time"
