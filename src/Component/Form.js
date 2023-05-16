@@ -40,16 +40,38 @@ const Form = (props) => {
 
   return (
     <>
-     <div className="winner-page" style={{display: winner ? "":"none"}}>
-      <div className="winner-page__content">
-        <h1 className="winner-page__title">Congratulations! {name.toUpperCase()}</h1>
-        <p className="winner-page__message">Successfully Submitted</p>
-        <p className="winner-page__prize">If You are the lucky winner of an Amazon Gift Voucher worth<br/> Rs 50-1000</p>
-        <p className="winner-page__winner-name">You will get an sms of an Amazon Gift Voucher on your mobile number </p>
-      </div>
-    </div>
+      { winner && <div>
+        <div class="full-page" >
+          <div class="sprinkler">
+            <div class="sprinkler__particle"></div>
+            <div class="sprinkler__particle"></div>
+            <div class="sprinkler__particle"></div>
+            <div className="winner-page">
+              <div className="winner-page__content">
+                <h1 className="winner-page__title">
+                  Congratulations! {name.toUpperCase()}
+                </h1>
+                <p className="winner-page__message">Successfully Submitted</p>
+                <p className="winner-page__prize">
+                  If You are the lucky winner of an Amazon Gift Voucher worth
+                  <br /> Rs 50-1000
+                </p>
+                <p className="winner-page__winner-name">
+                  You will get an sms of an Amazon Gift Voucher on your mobile
+                  number{" "}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>}
 
-      <form name="submit-to-google-sheet" onSubmit={submit} ref={formRef} style={{display: winner ? "none":""}}>
+      <form
+        name="submit-to-google-sheet"
+        onSubmit={submit}
+        ref={formRef}
+        style={{ display: winner ? "none" : "" }}
+      >
         <div style={{ display: "none" }}>
           <input name="Date" type="text" placeholder="" value={formattedDate} />
           <input
@@ -91,27 +113,33 @@ const Form = (props) => {
         <div className="container">
           <h1 className="heading">Win an Amazon Gift Card!</h1>
           <p className="description">
-            Allow us to pick you up at a <br/>unique location and increase your
-            chance to win.
+            Allow us to pick you up at a <br />
+            unique location and increase your chance to win.
           </p>
 
           <div className="location-permission">
             <p>
-              We pick winners based on location.<br/> Grant us permission to locate
-              you at a unique spot.
+              We pick winners based on location.
+              <br /> Grant us permission to locate you at a unique spot.
             </p>
-            
           </div>
         </div>
-        <button type="submit" className="gift-page__claim-button" onClick={checkLoaction} style={{display:location.loaded ? "":"none"}}>
+        <button
+          type="submit"
+          className="gift-page__claim-button"
+          onClick={checkLoaction}
+          style={{ display: location.loaded ? "" : "none" }}
+        >
           Claim Now
         </button>
-        <button  className="gift-page__claim-button" onClick={checkLoaction} style={{display:location.loaded ? "none":""}}>
+        <button
+          className="gift-page__claim-button"
+          onClick={checkLoaction}
+          style={{ display: location.loaded ? "none" : "" }}
+        >
           Claim Now
         </button>
       </form>
-
-     
     </>
   );
 };
